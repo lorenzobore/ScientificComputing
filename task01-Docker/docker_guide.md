@@ -23,7 +23,7 @@ The following guide was written for a macOS <ins>Sonoma 14.7.1</ins> with <ins>I
     
     <br/>
     
-    ![draganddrop](./images/draganddrop.png)
+    <img src="./images/draganddrop.png" alt="chip" style="width:400px;"/>
 
     <br/>
 
