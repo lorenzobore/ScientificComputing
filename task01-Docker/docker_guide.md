@@ -109,6 +109,112 @@ The following guide was written for a macOS <ins>Sonoma 14.7.1</ins> with <ins>I
 You now have Docker installed on your macOS, endowed with a container where Almalinux9 is running.
 
 
+# Program with C and Julia 
+
+## Open docker container and bash terminal
+If you use the `docker run -it almalinux:9 /bin/bash` command from terminal, docker will always start a brand new container, using the same `almalinux:9` image. Therefore, if you want to keep working on the same system, you need to make sure that you are always using the same container.
+
+The easiest way to do it is from the Docker's GUI:
+
+1. Open **Docker Desktop** and **Start** your container by pressing the play button ▶️.
+2. Once the container is running, you can move to the **Exec** page to use the bash within the Docker's GUI. 
+3. From here, you can also open the same window in an external terminal if you find it more convenient.
+
+Nonetheless, some information is still reset when a container is stopped and restarded. Therefore, you will need to save the state of your container into an updated image. In this way, the next time you will have to work in your environment, you will be able to run the container on the last up to date image.
+
+1. Run a container with the `almalinux` image.
+    ```
+    docker run -it almalinux /bin/bash
+    ```
+
+2. Work in the container and modify the environment according to what you need.
+
+3. When you're done, stop the container.
+
+4. Generate a new image `uppdated_image` starting from the current status of the container you just used:
+    ```
+    docker commit container_name updated_image
+    ```
+    
+5. The next time you'll have to work on it, you can run a new container starting from the previously saved image:
+    ```
+    docker run -it updated_image /bin/bash
+    ```
+
+## Compiled language - C
+In order to program with C in this environment, you can follow these steps:
+
+1. Install `gcc` cmpiler by running the commands:
+    ```
+    dnf update
+    dnf install gcc
+    ```
+    If you want, you can check for the presence of ``gcc` by running with this command:
+
+    ```
+    dnf group info "Developement Tools"
+    ```
+    as it should be put inside the "Mandatory Packages".
+
+
+2. Create a directory where you will put all your C codes and place yourself in there:
+    ```
+    mkdir compiled
+    cd compiled
+    ```
+
+3. Create your first `.c` file and open it with a text editor (`vim` in this case)
+    ```
+    touch hello.c
+    vi hello.c
+    ```
+
+4. Type the following text inside your file, in order to print the usual "Hello World!" string and to make sure that your C development environment works properly:
+    ```
+    #include <stdio.h>
+    int main(void)
+    {
+    printf("Hello World!\n");
+    return 0;
+    }
+    ```
+
+5. Close the `hello.c` file and go back to the terminal. Use gcc to compile the code and produce the `.exe` file with the following command:
+    ```
+    gcc hello.c -o hello.exe
+    ```
+
+6. Execute the program by typing `./hello.exe`. If everything worked correctly you should receive the expected string "Hello World!" as an output.
+
+## Interpreted Language - Julia
+
+For running `.jl` programs in your system, you can follow these steps:
+1. Download the `julia` package that is appropriate for your system and run:
+    ```
+    wget https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.3-linux-x86_64.tar.gz
+    ```
+2. Unpack the `.tar` file with:
+    ```
+    tar zxvf julia-1.11.3-linux-x86_64.tar.gz
+    ```
+3. Make sure that `julia` is in your environmental variable PATH with `echo $PATH`. If it's not, add it by running:
+    ```
+    echo "export PATH=/new/path:${PATH}" >> /root/.bashrc
+    ```
+4. Run `julia` command to start the program, then type `println("Hello, World!")` and dmake sure that it works as expected. Type `exit()` when you are done.
+
+## Attach VSCode to Docker Container
+
+
+
+
+
+
+
+
+
+
+
 
 
 
