@@ -8,23 +8,24 @@ The following guide was written for a macOS <ins>Sonoma 14.7.1</ins> with <ins>I
 2. Identify the **Docker Desktop** version that matches the type of **Chip** on your computer. 
 
     ![./images/dockersite.png](./images/dockersite.png)
-
+    
     In order to find out if your MAC has <ins>Apple Silicon</ins> or <ins>Intel Chip</ins>:
 
     - Click the **Apple**  icon in the top-left corner of your screen.
     - Select **About this Mac**.
     - Read which type of **Chip** is used on your computer.
 
-        <img src="./images/chip.png" alt="chip" style="width:400px;"/>
-
+        <p align="center">
+            <img src="./images/chip.png" alt="chip" style="width:400px;"/>
+        </p>
 3. Once identified, download the proper `Docker.dmg` file. 
 
 4. Go to **Finder>Download** and double click on the `Docker.dmg` file, then drag and drop the **Docker** icon into the **Applications** folder.
     
     <br/>
-    
-    <img src="./images/draganddrop.png" alt="chip" style="width:400px;"/>
-
+    <p align="center">
+        <img src="./images/draganddrop.png" alt="chip" style="width:400px;"/>
+    </p>
     <br/>
 
 <br/>
@@ -135,7 +136,7 @@ Nonetheless, some information is still reset when a container is stopped and res
     ```
     docker commit container_name updated_image
     ```
-    
+
 5. The next time you'll have to work on it, you can run a new container starting from the previously saved image:
     ```
     docker run -it updated_image /bin/bash
@@ -149,7 +150,7 @@ In order to program with C in this environment, you can follow these steps:
     dnf update
     dnf install gcc
     ```
-    If you want, you can check for the presence of ``gcc` by running with this command:
+    If you want, you can check for the presence of `gcc` by running with this command:
 
     ```
     dnf group info "Developement Tools"
@@ -199,11 +200,32 @@ For running `.jl` programs in your system, you can follow these steps:
     ```
 3. Make sure that `julia` is in your environmental variable PATH with `echo $PATH`. If it's not, add it by running:
     ```
-    echo "export PATH=/new/path:${PATH}" >> /root/.bashrc
+    export PATH="$PATH:/julia-1.11.3/bin"
     ```
-4. Run `julia` command to start the program, then type `println("Hello, World!")` and dmake sure that it works as expected. Type `exit()` when you are done.
+4. Run `julia` command to start the program, then type `println("Hello, World!")` and make sure that it works as expected. Type `exit()` when you are done.
 
 ## Attach VSCode to Docker Container
+
+1. From **VSCode**, download the following dependencies to be able to attach **Docker**.
+    <p align="center">
+        <img src="./images/dependencies.png" alt="dependencies" style="width:300px;"/>
+    </p>
+
+2. Once you have installed them, you should be able to see the **Docker** icon in the vertical bar on the left in **VSCode**.
+
+3. Click on that icon, and select the **Docker** container that you are running on.
+
+4. Right click on that container and `Attach Visual Studio Code`
+
+    <br/>
+    <p align="center">
+        <img src="./images/docker_attach.png" alt="attach" style="width:300px;"/>
+    </p>
+    <br/>
+
+5. In this way, another **VSCode** window will open, running on the Docker container that you selected.
+
+
 
 
 
